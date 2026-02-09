@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://j7u8ar637e6r"]
+
+[ext_resource type="Script" uid="uid://dpc3tiqs3li7u" path="res://monster_siren_player.gd" id="1_7pwyh"]
+[ext_resource type="Theme" uid="uid://dyd2wkf6bk1to" path="res://global_theme.tres" id="1_sjocl"]
+[ext_resource type="Script" uid="uid://53spyxyxk213" path="res://player.gd" id="3_3y2q7"]
+[ext_resource type="Script" uid="uid://bc30x7tpvtafb" path="res://album_detail.gd" id="4_vqo2d"]
+[ext_resource type="Script" uid="uid://bniq0i7w724yf" path="res://song_detail.gd" id="5_1tek1"]
+
+[node name="MonsterSirenPlayer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_sjocl")
+script = ExtResource("1_7pwyh")
+
+[node name="Player" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+script = ExtResource("3_3y2q7")
+
+[node name="Main" type="TabContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="all_albums" type="Control" parent="Main"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="ResContainer" type="ScrollContainer" parent="Main/all_albums"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResContainer" type="VBoxContainer" parent="Main/all_albums/ResContainer"]
+layout_mode = 2
+
+[node name="search" type="Control" parent="Main"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Container" type="ScrollContainer" parent="Main/search"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Container" type="VBoxContainer" parent="Main/search/Container"]
+custom_minimum_size = Vector2(1024, 600)
+layout_mode = 2
+
+[node name="SearchContainer" type="HSplitContainer" parent="Main/search/Container/Container"]
+layout_mode = 2
+split_offset = 1000
+
+[node name="Search" type="LineEdit" parent="Main/search/Container/Container/SearchContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "main.search.tooltip"
+placeholder_text = "main.search.placeholder"
+expand_to_text_length = true
+
+[node name="Post" type="Button" parent="Main/search/Container/Container/SearchContainer"]
+layout_mode = 2
+tooltip_text = "main.search.tooltip"
+text = "main.search.title"
+
+[node name="ResContainer" type="ScrollContainer" parent="Main/search/Container/Container"]
+layout_mode = 2
+
+[node name="ResContainer" type="VBoxContainer" parent="Main/search/Container/Container/ResContainer"]
+layout_mode = 2
+
+[node name="Resizer" type="Control" parent="Main/search/Container/Container"]
+layout_mode = 2
+
+[node name="AlbumDetail" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+script = ExtResource("4_vqo2d")
+
+[node name="ResContainer" type="ScrollContainer" parent="AlbumDetail"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResContainer" type="VBoxContainer" parent="AlbumDetail/ResContainer"]
+layout_mode = 2
+
+[node name="SongDetail" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+script = ExtResource("5_1tek1")
+
+[connection signal="tab_selected" from="Main" to="." method="_on_main_tab_selected"]
+[connection signal="pressed" from="Main/search/Container/Container/SearchContainer/Post" to="." method="_on_search"]

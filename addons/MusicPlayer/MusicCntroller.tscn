@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3r84xb8wbbf1"]
+
+[ext_resource type="Script" uid="uid://c3jskhwhn14tt" path="res://addons/MusicPlayer/music_cntroller.gd" id="1_f1bbj"]
+[ext_resource type="Texture2D" uid="uid://cgib85m6emsiv" path="res://addons/MusicPlayer/stopped.png" id="1_ql0ny"]
+[ext_resource type="Texture2D" uid="uid://7b33ji0mlare" path="res://addons/MusicPlayer/playing.png" id="2_f1bbj"]
+
+[node name="PlayerCom" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_f1bbj")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+mix_target = 1
+
+[node name="Panel" type="ColorRect" parent="."]
+layout_mode = 0
+color = Color(0, 0, 0, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 753.0
+offset_bottom = 40.415
+
+[node name="PlayButton" type="TextureButton" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("1_ql0ny")
+texture_pressed = ExtResource("2_f1bbj")
+stretch_mode = 5
+
+[node name="ProgressBar" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(512, 32)
+layout_mode = 2
+size_flags_vertical = 1
+scrollable = false
+
+[node name="TimeEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+text = "00:00:00"
+expand_to_text_length = true
+flat = true
+select_all_on_focus = true
+
+[node name="Time" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "/00:00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Volume" type="HSlider" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 32)
+layout_mode = 2
+size_flags_vertical = 1
+
+[node name="LyricScrollPanel" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(1024, 100)
+layout_mode = 0
+
+[node name="ScrollContainer" type="VBoxContainer" parent="LyricScrollPanel"]
+layout_mode = 2
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="toggled" from="HBoxContainer/PlayButton" to="." method="_on_play_button_toggled"]
+[connection signal="drag_ended" from="HBoxContainer/ProgressBar" to="." method="_on_progress_bar_drag_ended"]
+[connection signal="drag_started" from="HBoxContainer/ProgressBar" to="." method="_on_progress_bar_drag_started"]
+[connection signal="editing_toggled" from="HBoxContainer/TimeEdit" to="." method="_on_time_edit_editing_toggled"]

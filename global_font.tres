@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://ci24qlpwol4ut"]
+
+[ext_resource type="FontFile" uid="uid://drj1r73u5liqd" path="res://fonts/SourceHanSansSC-Regular.otf" id="1_g7whe"]
+[ext_resource type="FontFile" uid="uid://frao1md45xr" path="res://fonts/MonuTemp-0.111.ttf" id="2_07gxe"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_07gxe")])
+base_font = ExtResource("1_g7whe")

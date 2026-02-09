@@ -1,0 +1,17 @@
+en: 
+ main: 
+  songdetail: 
+   title: Song Detail
+ albumdetail: 
+  title: Album Detail
+ maintabct: 
+  all_albums:
+   title: All Albums
+   tooltip: Click this tab to refresh the albums list
+  search: 
+   title: Search
+   tooltip: Search for the albums
+ album_container: 
+  author: "Author: {}"
+ song_container: 
+  author: "Author: {}"
