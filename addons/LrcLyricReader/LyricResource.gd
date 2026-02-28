@@ -32,7 +32,8 @@ static func bsearch(list:Array,value:int):
 func get_lyric_pos(playback_pos:float,post_process:Callable=func(v):return v)->float:
 	var list = lyric_time_table.keys()
 	var r = list.bsearch(playback_pos,true)
-	r = r - 1 #Idk why I needs it... It's unbelieveable
+	if not is_equal_approx(list[r],playback_pos):
+		r = r - 1 #Idk why I needs it... It's unbelieveable
 	return list[clampi(post_process.call(r),0,list.size()-1)]
 
 func get_lyric(playback_pos:float)->String:

@@ -26,7 +26,12 @@ FileSystemUtil="*res://autoload/MSR_LIB/FileSystemUtil.gd"
 UrlUtil="*res://autoload/MSR_LIB/UrlUtil.gd"
 DictUtil="*res://autoload/MSR_LIB/DictUtil.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/apcp_UI/plugin.cfg", "res://addons/apcp_format/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

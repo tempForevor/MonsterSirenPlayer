@@ -114,7 +114,7 @@ func call_api(api_extends:String,args:Dictionary[String,String],frommsr:bool=tru
 	if not query_dic.is_empty():
 		for i in query_dic.keys():
 			query_dic[i] = (query_dic[i] as String).uri_encode()
-		var query_string := HTTPClient.new().query_string_from_dict(query_dic)
+		var query_string := http_request.query_string_from_dict(query_dic)
 		api_url = api_url + "?" + query_string
 	
 	var error = http_request.request(api_url)
