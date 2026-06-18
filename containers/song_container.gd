@@ -28,6 +28,8 @@ var coverurl = ""
 var lyricurl = ""
 var sourceurl = ""
 
+var data : StandardMSRSong = null
+
 var lyric : LyricResource = null
 var source : AudioStream = null
 
@@ -42,6 +44,8 @@ func set_data(asong:StandardMSRSong,simple:bool = false):
 	Cover.custom_minimum_size = CoverSize
 	Name.add_theme_font_size_override("font_size",NameSize)
 	Author.label_settings.font_size = AuthorSize
+	
+	data = asong
 	
 	Name.text = asong.name
 	Author.text = TranslationServer.translate("song_container.author").format([str(asong.artists)])
@@ -67,7 +71,8 @@ func set_data(asong:StandardMSRSong,simple:bool = false):
 
 func load_picture():
 	var retry_flag = false
-	var texture_data : PackedByteArray = await CacheSystem.load_cache(coverurl)
+	#var texture_data : PackedByteArray = await CacheSystem.load_cache(coverurl)
+	var texture_data : PackedByteArray = await data.get_cover()
 	#print(texture_data)
 	var image  = Image.new()
 	
@@ -99,7 +104,8 @@ func load_picture():
 
 func load_lyric():
 	var retry_flag = false
-	var lyric_data : PackedByteArray = await CacheSystem.load_cache(lyricurl)
+	#var lyric_data : PackedByteArray = await CacheSystem.load_cache(lyricurl)
+	var lyric_data : PackedByteArray = await data.get_lyric()
 	#print(texture_data)
 	
 	var lyric_string : String = lyric_data.get_string_from_utf8()
@@ -116,7 +122,8 @@ func load_lyric():
 
 func load_source(update:bool=false):
 	var retry_flag = false
-	var source_data : PackedByteArray = await CacheSystem.load_cache(sourceurl)
+	#var source_data : PackedByteArray = await CacheSystem.load_cache(sourceurl)
+	var source_data : PackedByteArray = await data.get_audio()
 	#print(texture_data)
 	var stream : AudioStream = null
 	

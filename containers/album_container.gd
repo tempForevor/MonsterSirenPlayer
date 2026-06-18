@@ -17,6 +17,8 @@ const IntroSize : int = 24
 
 signal choose_this_album
 
+var data : StandardMSRAlbum = null
+
 var coverurl = ""
 var load_tex_thread : Thread
 
@@ -33,6 +35,8 @@ func set_data(aalbum:StandardMSRAlbum,simple:bool = false):
 	Name.add_theme_font_size_override("font_size",NameSize)
 	Author.label_settings.font_size = AuthorSize
 	Intro.label_settings.font_size = IntroSize
+	
+	data = aalbum
 	
 	Name.text = aalbum.name
 	Author.text = TranslationServer.translate("album_container.author").format([aalbum.belong] if aalbum.artists.is_empty() else [str(aalbum.artists)])
@@ -59,7 +63,8 @@ func once_load_texture():
 
 func load_picture():
 	var retry_flag = false
-	var texture_data : PackedByteArray = await CacheSystem.load_cache(coverurl)
+	#var texture_data : PackedByteArray = await CacheSystem.load_cache(coverurl)
+	var texture_data : PackedByteArray = await data.get_cover(false)
 	#print(texture_data)
 	var image  = Image.new()
 	

@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resource
 
 class_name StandardMSRAlbum
 
@@ -63,3 +63,23 @@ func tag_album():
 	return self
 func get_full_data()->StandardMSRAlbum:
 	return set_data_from_obj(await MsrApi.get_album(cid))
+
+func get_item_name(de:bool=false) -> String:
+	if de:
+		return name + "De"
+	return name
+
+func get_cover(de:bool=false):
+	var req_url = ""
+	if de:
+		req_url = coverDeUrl
+	else:
+		req_url = coverUrl
+	if req_url == "":
+		req_url = coverUrl
+	if req_url == "":
+		req_url = coverDeUrl
+	var t := await MsrApi.cache_manager.load_cache(CacheInfo.new(
+		get_item_name(de),MsrApi.cache_type["image"],[req_url,self]
+	))
+	return t.resource

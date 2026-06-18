@@ -6,7 +6,7 @@ func _init() -> void:
 	ScenesVariables.SongDetail = self
 
 func _ready() -> void:
-	title = TranslationServer.translate(title)
+	title = TranslationServer.translate(title)	
 
 func show_song(asong:StandardMSRSong):
 	size = PlayerUtil.custom_window_size()

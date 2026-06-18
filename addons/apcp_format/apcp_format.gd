@@ -2,8 +2,7 @@
 extends EditorPlugin
 
 var format_autoload : Dictionary[String,String] = {
-	"Formater" : "res://addons/apcp_format/FormatAnalysiser/FormatAnalysiser.gd",
-	"FormatConfig" : "res://addons/apcp_format/FormatAnalysiser/FormatConfig.gd"
+	"Formater" : "res://addons/apcp_format/FormatAnalysiser/FormatAnalysiser.gd"
 }
 
 func _enable_plugin() -> void:

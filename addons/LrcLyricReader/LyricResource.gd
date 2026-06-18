@@ -29,21 +29,27 @@ static func bsearch(list:Array,value:int):
 			l=mid
 	return l
 
+func get_lyric_at(lyric_pos:float)->String:
+	var lyric_keys = get_lyrics().keys()
+	var clamp_pos = clampf(lyric_pos,lyric_keys.front(),lyric_keys.back())
+	return lyric_time_table[clamp_pos]
+
 func get_lyric_pos(playback_pos:float,post_process:Callable=func(v):return v)->float:
-	var list = lyric_time_table.keys()
+	var list = get_lyrics().keys()
 	var r = list.bsearch(playback_pos,true)
+	r = clampi(r,0,list.size()-1)
 	if not is_equal_approx(list[r],playback_pos):
 		r = r - 1 #Idk why I needs it... It's unbelieveable
 	return list[clampi(post_process.call(r),0,list.size()-1)]
 
 func get_lyric(playback_pos:float)->String:
-	return lyric_time_table[get_lyric_pos(playback_pos)]
+	return get_lyric_at(get_lyric_pos(playback_pos))
 
-func get_previous_lyric(playback_pos:float,previous:int=1)->String:
-	return lyric_time_table[get_lyric_pos(playback_pos,(func(v,p):return v-p).bind(previous))]
+func get_previous_lyric(playback_pos:float,previous:float=1.0)->String:
+	return get_lyric_at(get_lyric_pos(playback_pos,(func(v,p):return v-p).bind(previous)))
 
-func get_next_lyric(playback_pos:float,next:int=1)->String:
-	return lyric_time_table[get_lyric_pos(playback_pos,(func(v,p):return v+p).bind(next))]
+func get_next_lyric(playback_pos:float,next:float=1.0)->String:
+	return get_lyric_at(get_lyric_pos(playback_pos,(func(v,p):return v+p).bind(next)))
 
 # 1 s 2 m 3 h 4 d
 static var time_trans_map : Dictionary[int,float] = {

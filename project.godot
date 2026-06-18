@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="MonsterSirenPlayerRework"
 run/main_scene="uid://bjryqy1f72bsp"
-config/features=PackedStringArray("4.5", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -25,10 +29,11 @@ CacheSystem="*res://autoload/MSR_LIB/CacheSystem.gd"
 FileSystemUtil="*res://autoload/MSR_LIB/FileSystemUtil.gd"
 UrlUtil="*res://autoload/MSR_LIB/UrlUtil.gd"
 DictUtil="*res://autoload/MSR_LIB/DictUtil.gd"
+Formater="*res://addons/apcp_format/FormatAnalysiser/FormatAnalysiser.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/apcp_UI/plugin.cfg", "res://addons/apcp_format/plugin.cfg")
+enabled=PackedStringArray("res://addons/apcp_format/plugin.cfg")
 
 [rendering]
 

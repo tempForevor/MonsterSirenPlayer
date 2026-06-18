@@ -1,4 +1,4 @@
-extends RefCounted
+extends Resource
 
 class_name StandardMSRSong
 
@@ -57,3 +57,36 @@ func tag_album():
 	return self
 func get_full_data()->StandardMSRSong:
 	return set_data_from_obj(await MsrApi.get_song(cid))
+
+var _cover_url = ""
+
+func get_cover_url():
+	if _cover_url != "":
+		return _cover_url
+	if (mvCoverUrl == null) or (mvCoverUrl == "<null>"):
+		var from = (await MsrApi.get_album(albumCid))
+		_cover_url = from.coverUrl
+	else:
+		_cover_url = mvCoverUrl
+	return _cover_url
+
+func get_item_name():
+	return name
+
+func get_cover():
+	var t := await MsrApi.cache_manager.load_cache(CacheInfo.new(
+		get_item_name(),MsrApi.cache_type["image"],[await get_cover_url(),self]
+	))
+	return t.resource
+
+func get_audio():
+	var t := await MsrApi.cache_manager.load_cache(CacheInfo.new(
+		get_item_name(),MsrApi.cache_type["audio"],[sourceUrl,self]
+	))
+	return t.resource
+
+func get_lyric():
+	var t := await MsrApi.cache_manager.load_cache(CacheInfo.new(
+		get_item_name(),MsrApi.cache_type["lyric"],[lyricUrl,self]
+	))
+	return t.resource

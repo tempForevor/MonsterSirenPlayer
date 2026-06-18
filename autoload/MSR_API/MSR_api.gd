@@ -4,6 +4,7 @@ var debug := true
 
 const API_BASE : String = "https://monster-siren.hypergryph.com/api/"
 var global_user_content : Dictionary[String,String] = {}
+var global_client_api := HTTPClient.new()
 
 func old_init_client() -> HTTPClient:
 	var client := HTTPClient.new()
@@ -88,7 +89,7 @@ func old_call_api(api_extends:String,args:Dictionary[String,String],user_content
 ## @param [code]frommsr[/code] this will control whether the base url is appended to the url.[br]
 ## @param [code]trans2json[/code] this will control whether to convert the bytes data to json obj.
 func call_api(api_extends:String,args:Dictionary[String,String],frommsr:bool=true,trans2json:bool=true,user_content:Dictionary[String,String]={}):
-	var http_request = HTTPRequest.new()
+	var http_request := HTTPRequest.new()
 	add_child(http_request)
 	var res : Array = [{}]
 	
@@ -114,7 +115,7 @@ func call_api(api_extends:String,args:Dictionary[String,String],frommsr:bool=tru
 	if not query_dic.is_empty():
 		for i in query_dic.keys():
 			query_dic[i] = (query_dic[i] as String).uri_encode()
-		var query_string := http_request.query_string_from_dict(query_dic)
+		var query_string := global_client_api.query_string_from_dict(query_dic)
 		api_url = api_url + "?" + query_string
 	
 	var error = http_request.request(api_url)
@@ -164,5 +165,21 @@ func search(keyword:String)->Dictionary:
 	res["list"]=nlist
 	return res
 
+## Cache Info Arguments : [url,standard_ref]
+var cache_manager : CacheManagerClass = null
+# Cover Loader
+# Music Loader
+# Lyric Loader
+const cache_type : Dictionary[String,String] = {
+	"image" : "MsrApiImageToPackedByteArray",
+	"lyric" : "MsrApiLyricToPackedByteArray",
+	"audio" : "MsrApiAudioToPackedByteArray"
+}
+
+func init_cache():
+	var env := CacheEnvironment.new()
+	cache_manager = CacheManagerClass.new(env)
+	cache_manager.default_model = MsrDataCacheModel.new()
+
 func _enter_tree() -> void:
-	pass
+	init_cache()

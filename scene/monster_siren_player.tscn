@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bjryqy1f72bsp"]
+[gd_scene format=3 uid="uid://bjryqy1f72bsp"]
 
 [ext_resource type="Script" uid="uid://dpc3tiqs3li7u" path="res://scene/monster_siren_player.gd" id="1_7pwyh"]
 [ext_resource type="Theme" uid="uid://bmp5gmbl5w7ux" path="res://global_theme.tres" id="1_sjocl"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bc30x7tpvtafb" path="res://scene/album_detail.gd" id="4_vqo2d"]
 [ext_resource type="Script" uid="uid://bniq0i7w724yf" path="res://scene/song_detail.gd" id="5_1tek1"]
 
-[node name="MonsterSirenPlayer" type="Control"]
+[node name="MonsterSirenPlayer" type="Control" unique_id=820985846]
 auto_translate_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -17,7 +17,7 @@ grow_vertical = 2
 theme = ExtResource("1_sjocl")
 script = ExtResource("1_7pwyh")
 
-[node name="Player" type="Window" parent="."]
+[node name="Player" type="Window" parent="." unique_id=2083079868]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "main.player.title"
@@ -27,7 +27,7 @@ visible = false
 popup_window = true
 script = ExtResource("3_3y2q7")
 
-[node name="Main" type="TabContainer" parent="."]
+[node name="Main" type="TabContainer" parent="." unique_id=1043923662]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -38,11 +38,11 @@ grow_vertical = 2
 current_tab = 0
 metadata/_custom_type_script = "uid://cxxiwmwxraahg"
 
-[node name="all_albums" type="Control" parent="Main"]
+[node name="all_albums" type="Control" parent="Main" unique_id=1501868471]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="ResContainer" type="ScrollContainer" parent="Main/all_albums"]
+[node name="ResContainer" type="ScrollContainer" parent="Main/all_albums" unique_id=37141372]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,15 +50,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ResContainer" type="VBoxContainer" parent="Main/all_albums/ResContainer"]
+[node name="ResContainer" type="VBoxContainer" parent="Main/all_albums/ResContainer" unique_id=1898117789]
 layout_mode = 2
 
-[node name="search" type="Control" parent="Main"]
+[node name="search" type="Control" parent="Main" unique_id=1212870769]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="Container" type="ScrollContainer" parent="Main/search"]
+[node name="Container" type="ScrollContainer" parent="Main/search" unique_id=893141871]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,36 +66,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Container" type="VBoxContainer" parent="Main/search/Container"]
+[node name="Container" type="VBoxContainer" parent="Main/search/Container" unique_id=2036398565]
 custom_minimum_size = Vector2(1024, 600)
 layout_mode = 2
 
-[node name="SearchContainer" type="HSplitContainer" parent="Main/search/Container/Container"]
+[node name="SearchContainer" type="HSplitContainer" parent="Main/search/Container/Container" unique_id=981239249]
 layout_mode = 2
+split_offsets = PackedInt32Array(1000)
 split_offset = 1000
 
-[node name="Search" type="LineEdit" parent="Main/search/Container/Container/SearchContainer"]
+[node name="Search" type="LineEdit" parent="Main/search/Container/Container/SearchContainer" unique_id=1860725986]
 unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "main.search.tooltip"
 placeholder_text = "main.search.placeholder"
 expand_to_text_length = true
 
-[node name="Post" type="Button" parent="Main/search/Container/Container/SearchContainer"]
+[node name="Post" type="Button" parent="Main/search/Container/Container/SearchContainer" unique_id=2132207705]
 layout_mode = 2
 tooltip_text = "main.search.tooltip"
 text = "main.search.title"
 
-[node name="ResContainer" type="ScrollContainer" parent="Main/search/Container/Container"]
+[node name="ResContainer" type="ScrollContainer" parent="Main/search/Container/Container" unique_id=1953587446]
 layout_mode = 2
 
-[node name="ResContainer" type="VBoxContainer" parent="Main/search/Container/Container/ResContainer"]
+[node name="ResContainer" type="VBoxContainer" parent="Main/search/Container/Container/ResContainer" unique_id=1704845277]
 layout_mode = 2
 
-[node name="Resizer" type="Control" parent="Main/search/Container/Container"]
+[node name="Resizer" type="Control" parent="Main/search/Container/Container" unique_id=1353403401]
 layout_mode = 2
 
-[node name="AlbumDetail" type="Window" parent="."]
+[node name="AlbumDetail" type="Window" parent="." unique_id=1470240949]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "main.albumdetail.title"
@@ -105,14 +106,14 @@ visible = false
 popup_window = true
 script = ExtResource("4_vqo2d")
 
-[node name="ResContainer" type="ScrollContainer" parent="AlbumDetail"]
+[node name="ResContainer" type="ScrollContainer" parent="AlbumDetail" unique_id=1462268074]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ResContainer" type="VBoxContainer" parent="AlbumDetail/ResContainer"]
+[node name="ResContainer" type="VBoxContainer" parent="AlbumDetail/ResContainer" unique_id=331999225]
 layout_mode = 2
 
-[node name="SongDetail" type="Window" parent="."]
+[node name="SongDetail" type="Window" parent="." unique_id=759878831]
 unique_name_in_owner = true
 auto_translate_mode = 1
 title = "main.songdetail.title"
@@ -122,14 +123,14 @@ visible = false
 popup_window = true
 script = ExtResource("5_1tek1")
 
-[node name="ResContainer" type="ScrollContainer" parent="SongDetail"]
+[node name="ResContainer" type="ScrollContainer" parent="SongDetail" unique_id=657623660]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ResContainer" type="VBoxContainer" parent="SongDetail/ResContainer"]
+[node name="ResContainer" type="VBoxContainer" parent="SongDetail/ResContainer" unique_id=318947466]
 layout_mode = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1428307557]
 
 [connection signal="close_requested" from="Player" to="Player" method="_on_close_requested"]
 [connection signal="pressed" from="Main/search/Container/Container/SearchContainer/Post" to="." method="_on_search"]

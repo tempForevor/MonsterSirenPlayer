@@ -36,3 +36,7 @@ func _enter_tree() -> void:
 		},
 		"T5":"V3"
 	}))
+	var t1 := Formater.analysis("Hello {replace} {replace} {replace} !")
+	print(t1.model)
+	print(t1.varpos)
+	print(t1.format({"replace":"world"}))

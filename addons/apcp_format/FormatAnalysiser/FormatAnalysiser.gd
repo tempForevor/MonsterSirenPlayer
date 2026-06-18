@@ -11,5 +11,5 @@ func analysis(raw:StringName,update:bool=false)->FormatModel:
 	caches[raw]=FormatModel.analysis(raw)
 	return caches[raw]
 
-func format(raw:StringName,args:Array)->String:
+func format(raw:StringName,args:Dictionary[String,String])->String:
 	return analysis(raw).format(args)
