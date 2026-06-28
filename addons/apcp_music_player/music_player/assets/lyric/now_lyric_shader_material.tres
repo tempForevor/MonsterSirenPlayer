@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bvtjpggjbaidb"]
+
+[ext_resource type="Shader" uid="uid://etckg11ggn2f" path="res://addons/apcp_music_player/music_player/assets/lyric/now_lyric_shader_material.gdshader" id="1_xb1uf"]
+
+[resource]
+shader = ExtResource("1_xb1uf")
+shader_parameter/max_value = 1.0
+shader_parameter/now_value = 0.355
+shader_parameter/raw_color = Vector4(1, 1, 1, 1)
+shader_parameter/alt_color = Vector4(0, 0.1, 1, 1)
+shader_parameter/size = Vector2(205, 23)

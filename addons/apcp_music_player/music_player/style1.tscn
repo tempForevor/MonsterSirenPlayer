@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b4k512282o5xc"]
+
+[ext_resource type="Texture2D" uid="uid://b2eo1krvai105" path="res://addons/apcp_music_player/music_player/assets/player/volume_on.png" id="2_2domf"]
+[ext_resource type="Script" uid="uid://cb08dqx7032js" path="res://addons/apcp_music_player/music_player/music_player.gd" id="2_2lju6"]
+[ext_resource type="Texture2D" uid="uid://dntn4l3oj4ckf" path="res://addons/apcp_music_player/music_player/assets/player/stopped.png" id="3_nppjs"]
+[ext_resource type="Texture2D" uid="uid://dpcwnnnug0nor" path="res://addons/apcp_music_player/music_player/assets/player/playing.png" id="4_u32wy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3entc"]
+bg_color = Color(0.13725491, 0.75686276, 0.64705884, 0.53333336)
+
+[node name="MusicController" type="PanelContainer" unique_id=1814678489 node_paths=PackedStringArray("PosBar", "PosEditer", "PosLimiter", "VolumeBar", "VolumeEditer", "LyricContainer", "PlayButton")]
+custom_minimum_size = Vector2(800, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -352.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3entc")
+script = ExtResource("2_2lju6")
+pos_flag = 12
+PosBar = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PosBar")
+PosEditer = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PosEditer")
+PosLimiter = NodePath("MarginContainer/VBoxContainer/HBoxContainer/PosLimiter")
+volume_flag = 12
+VolumeBar = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/VolumeBar")
+VolumeEditer = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/VolumeEditer")
+VolumeFormatter = "str(volume*100)"
+VolumeCalculater = "float(v_v.to_float()/100.0)"
+LyricContainer = NodePath("MarginContainer/VBoxContainer/MarginContainer/Lyrics")
+PlayButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/TextureButton")
+Recycle = false
+metadata/_custom_type_script = "uid://cb08dqx7032js"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1699942159]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1743087491]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2141880667]
+layout_mode = 2
+
+[node name="PosBar" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2135291676]
+custom_minimum_size = Vector2(512, 30)
+layout_mode = 2
+
+[node name="PosEditer" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=226881759]
+layout_mode = 2
+alignment = 2
+expand_to_text_length = true
+flat = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1684332940]
+layout_mode = 2
+text = "/"
+
+[node name="PosLimiter" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2023591805]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=141118971]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1330304641]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("2_2domf")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="VolumeBar" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1143763764]
+custom_minimum_size = Vector2(128, 30)
+layout_mode = 2
+
+[node name="VolumeEditer" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1478645336]
+layout_mode = 2
+alignment = 2
+expand_to_text_length = true
+flat = true
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=2290037]
+layout_mode = 2
+text = "%"
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=301196209]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("4_u32wy")
+texture_pressed = ExtResource("3_nppjs")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=424317303]
+layout_mode = 2
+
+[node name="Lyrics" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=1283142461]
+layout_mode = 2

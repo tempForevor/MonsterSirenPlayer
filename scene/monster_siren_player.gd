@@ -34,10 +34,11 @@ func _on_main_tab_selected(tab: int) -> void:
 			AllAlbumsContent.add_child(await PlayerUtil.create_album_detail_label(i))
 
 func _on_search() -> void:
-	print("loading search results...")
+	print("Loading search results...")
 	PlayerUtil.reset_res_container(SearchRes)
 	var r := await MsrApi.search(str(SearchText.text))
 	var rl : Array[StandardMSRAlbum] = r["list"]
+	print("Result of searching : ",r)
 	for i in rl:
 		SearchRes.add_child(await PlayerUtil.create_album_detail_label(i))
 	var el := Label.new()

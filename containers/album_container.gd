@@ -86,7 +86,7 @@ func load_picture():
 		"webp":
 			err = image.load_webp_from_buffer(texture_data)
 	if err != OK:
-		print("Warning: Cannot load image from buffer (",err,")")
+		push_warning("Cannot load image from buffer (",err,")")
 		retry_flag = true
 	var texture = ImageTexture.create_from_image(image) 
 	Cover.texture = texture

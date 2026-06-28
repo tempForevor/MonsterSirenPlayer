@@ -1,11 +1,11 @@
 extends Resource
 
-class_name LyricResource
+class_name OldLyricResource
 
 @export var lyric_time_table : Dictionary[float,String] = {}
 var origin_time_table : Dictionary[String,String] = {}
 
-static var INDENTY = LyricResource.indenty()
+static var INDENTY = OldLyricResource.indenty()
 
 func get_lyrics()->Dictionary:
 	if lyric_time_table.is_empty():

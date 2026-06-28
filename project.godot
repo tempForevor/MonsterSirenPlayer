@@ -33,7 +33,7 @@ Formater="*res://addons/apcp_format/FormatAnalysiser/FormatAnalysiser.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/apcp_format/plugin.cfg")
+enabled=PackedStringArray("res://addons/apcp_format/plugin.cfg", "res://addons/cache_system/plugin.cfg")
 
 [rendering]
 

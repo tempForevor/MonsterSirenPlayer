@@ -114,10 +114,14 @@ func call_api(api_extends:String,args:Dictionary[String,String],frommsr:bool=tru
 	var query_dic := args.merged(user_content)
 	if not query_dic.is_empty():
 		for i in query_dic.keys():
-			query_dic[i] = (query_dic[i] as String).uri_encode()
+			#query_dic[i] = (query_dic[i] as String).uri_encode()
+			query_dic[i] = (query_dic[i] as String)
+			# query_string_from_dict()回自动将输入编码成url友好格式
+			# 所以此处不需要加.url_encode()
 		var query_string := global_client_api.query_string_from_dict(query_dic)
 		api_url = api_url + "?" + query_string
-	
+	if debug:
+		print("Api url : ",api_url)
 	var error = http_request.request(api_url)
 	if error != OK:
 		push_error("在HTTP请求中发生了一个错误。(",error,")url:",api_url)

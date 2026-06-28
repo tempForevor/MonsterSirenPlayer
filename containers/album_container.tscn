@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://drrcc7mlehc7i"]
+[gd_scene format=3 uid="uid://drrcc7mlehc7i"]
 
 [ext_resource type="Script" uid="uid://ck5qv770idpn5" path="res://containers/album_container.gd" id="1_kbowr"]
 
@@ -9,38 +9,39 @@
 [sub_resource type="LabelSettings" id="LabelSettings_qno40"]
 font_size = 24
 
-[node name="AlbumContainer" type="VBoxContainer"]
+[node name="AlbumContainer" type="VBoxContainer" unique_id=2047653400]
 auto_translate_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_kbowr")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1349609859]
 layout_mode = 2
 
-[node name="AlbumCover" type="TextureRect" parent="HBoxContainer"]
+[node name="AlbumCover" type="TextureRect" parent="HBoxContainer" unique_id=316619975]
 layout_mode = 2
 texture = SubResource("ExternalTexture_kbowr")
 expand_mode = 3
 
-[node name="Name" type="Button" parent="HBoxContainer"]
+[node name="Name" type="Button" parent="HBoxContainer" unique_id=1518320252]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Album Test"
+flat = true
 
-[node name="Author" type="Label" parent="."]
+[node name="Author" type="Label" parent="." unique_id=1326296815]
 layout_mode = 2
 text = "author:arknights"
 label_settings = SubResource("LabelSettings_td406")
 
-[node name="Intro" type="Label" parent="."]
+[node name="Intro" type="Label" parent="." unique_id=49005854]
 layout_mode = 2
 text = "intro"
 label_settings = SubResource("LabelSettings_qno40")
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1876767946]
 layout_mode = 2
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=2085196968]
 
 [connection signal="pressed" from="HBoxContainer/Name" to="." method="_on_name_pressed"]

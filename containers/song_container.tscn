@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://34et0gk5gold"]
+[gd_scene format=3 uid="uid://34et0gk5gold"]
 
 [ext_resource type="Script" uid="uid://b7h0yif8vekvi" path="res://containers/song_container.gd" id="1_hlyua"]
 [ext_resource type="Script" uid="uid://1dkhm61wc2jl" path="res://addons/MusicPlayer/MusicController.gd" id="2_pq6ex"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_hlyua"]
 
-[node name="SongContainer" type="VBoxContainer"]
+[node name="SongContainer" type="VBoxContainer" unique_id=585235069]
 auto_translate_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,29 +14,30 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hlyua")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=839406367]
 layout_mode = 2
 
-[node name="SongCover" type="TextureRect" parent="HBoxContainer"]
+[node name="SongCover" type="TextureRect" parent="HBoxContainer" unique_id=2086851168]
 layout_mode = 2
 
-[node name="Name" type="Button" parent="HBoxContainer"]
+[node name="Name" type="Button" parent="HBoxContainer" unique_id=1637545851]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Song Test"
+flat = true
 
-[node name="Author" type="Label" parent="."]
+[node name="Author" type="Label" parent="." unique_id=697560851]
 layout_mode = 2
 text = "author:arknights"
 label_settings = SubResource("LabelSettings_hlyua")
 
-[node name="HSeparator" type="HSeparator" parent="."]
+[node name="HSeparator" type="HSeparator" parent="." unique_id=1621271993]
 layout_mode = 2
 
-[node name="HSeparator2" type="HSeparator" parent="."]
+[node name="HSeparator2" type="HSeparator" parent="." unique_id=1321647297]
 layout_mode = 2
 
-[node name="PlayerCom" type="Control" parent="."]
+[node name="PlayerCom" type="Control" parent="." unique_id=1783443319]
 custom_minimum_size = Vector2(1024, 100)
 layout_mode = 2
 script = ExtResource("2_pq6ex")

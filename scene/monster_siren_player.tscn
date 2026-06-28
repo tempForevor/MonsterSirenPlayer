@@ -116,6 +116,7 @@ layout_mode = 2
 [node name="SongDetail" type="Window" parent="." unique_id=759878831]
 unique_name_in_owner = true
 auto_translate_mode = 1
+oversampling_override = 1.0
 title = "main.songdetail.title"
 initial_position = 2
 size = Vector2i(600, 300)

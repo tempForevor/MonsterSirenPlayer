@@ -1,4 +1,4 @@
-extends Control
+extends VBoxContainer
 
 class_name INNER_MUSIC_CONTROLLER_PLAYER_COM
 
@@ -28,6 +28,7 @@ var dynamic_radio : float = 0.9
 var dynamic_change_lyric_size : bool = true
 var dynamic_lyric_single_height : int = 100
 
+var get_ready = false
 var process_input = false
 var SHORTCUT = {
 	play = "MusicController_Player_Play",
@@ -75,30 +76,34 @@ func _ready() -> void:
 		e.keycode = key_map[i]
 		e.pressed = true
 		InputMap.action_add_event(i,e)
+	get_ready = true
 	gui_reset()
 	lyric_init()
+	_on_volume_drag_ended(true)
 
 func gui_reset():
-	if dynamic_change_progress_size:
-		progress_size.x = int((size.x - play_button_size.x - (time_size.x  * 2) - volume_size.x) * dynamic_radio)
-	if dynamic_change_lyric_size:
-		lyric_size.y = get_lyric_cnt() * dynamic_lyric_single_height
-		lyric_size.x = size.x
-	
+	if not get_ready:
+		return
 	PlayButton.custom_minimum_size = play_button_size
 	Progress.custom_minimum_size = progress_size
 	Volume.custom_minimum_size = volume_size
 	TimeEdit.custom_minimum_size = time_size
 	TimeLabel.custom_minimum_size = time_size
-	Background.size=$HBoxContainer.size
+	#Background.size=$HBoxContainer.size
 	LyricScroll.custom_minimum_size = lyric_size
 	for i in LyricLabels:
 		i.custom_minimum_size.x = lyric_size.x
+		
+	if dynamic_change_progress_size:
+		progress_size.x = int((size.x - play_button_size.x - (time_size.x  * 2) - volume_size.x) * dynamic_radio)
+	if dynamic_change_lyric_size:
+		lyric_size.y = get_lyric_cnt() * dynamic_lyric_single_height
+		lyric_size.x = size.x
 
 func _process(delta: float) -> void:
-	gui_reset()
+	#gui_reset()
 	
-	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),Volume.value/Volume.max_value)
+	
 	
 	if stream != null:
 		TimeLabel.text = str(Time.get_time_string_from_unix_time( stream.get_length() ))
@@ -111,7 +116,7 @@ func _process(delta: float) -> void:
 	process_input = is_visible_in_tree()
 	
 	if process_input:
-		if Input.is_action_just_pressed(SHORTCUT.play,true):
+		if Input.is_action_just_pressed(SHORTCUT.play,true) and (not PlayButton.has_focus()):
 			change(not playing)
 			PlayButton.grab_focus()
 		if Input.is_action_pressed(SHORTCUT.forward,true) or Input.is_action_pressed(SHORTCUT.backward,true):
@@ -203,3 +208,9 @@ func _on_time_edit_editing_toggled(toggled_on: bool) -> void:
 		return
 	seek(Time.get_unix_time_from_datetime_string(TimeEdit.text))
 	time_playing = playing
+
+
+func _on_volume_drag_ended(value_changed: bool) -> void:
+	if not value_changed:
+		return
+	AudioServer.set_bus_volume_linear(AudioServer.get_bus_index("Master"),Volume.value/Volume.max_value)

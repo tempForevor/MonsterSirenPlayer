@@ -53,15 +53,20 @@ func create_path_if_miss(path:String,is_dir:bool=false) -> Error:
 	var error := OK
 	if not dir.dir_exists(tpath.get_base_dir()):
 		error = dir.make_dir_recursive(tpath.get_base_dir())
+	if error != OK:
+		push_warning("Can't create path : ",tpath," with error ",error)
 	#print("Now error : ",error)
 	if is_dir:
 		return error
 	if dir.file_exists(tpath):
+		push_warning("Path (",tpath,") already exists.")
 		return ERR_ALREADY_EXISTS
 	var file := FileAccess.open(tpath,FileAccess.WRITE_READ)
 	error = FileAccess.get_open_error()
 	if file == null:
 		error = ERR_FILE_UNRECOGNIZED
+	if error != OK:
+		push_warning("Can't create file : ",tpath," with error ",error)
 	return error
 
 func create_item_if_miss(item:String,is_dir:bool=false) -> Error:
@@ -71,10 +76,15 @@ func remove_path_if_exists(path:String) -> Error:
 	var tpath = avaliable_file_name(path)
 	var dir = DirAccess.open(cache_parent)
 	if not dir.dir_exists(tpath.get_base_dir()):
+		push_warning("Can't find path ",tpath.get_base_dir())
 		return ERR_FILE_NOT_FOUND
 	if not dir.file_exists(tpath):
+		push_warning("Can't find file ",tpath)
 		return ERR_FILE_NOT_FOUND
-	return dir.remove(tpath)
+	var error = dir.remove(tpath)
+	if error != OK:
+		push_error("Can't remove file ",tpath)
+	return error
 
 func remove_item_if_exists(item:String) -> Error:
 	return remove_path_if_exists(get_item_path(item))
